@@ -1,0 +1,10 @@
+# Redrob Hackathon - Unified Layer Requirements
+# This file is intentionally minimal as the unified layer
+# primarily orchestrates existing components.
+
+# No external dependencies required for the unified layer itself.
+# The following are optional for enhanced functionality:
+
+# For future enhancements (optional)
+# rich>=13.0.0        # For enhanced terminal output
+# click>=8.0.0        # For CLI enhancements (if needed)

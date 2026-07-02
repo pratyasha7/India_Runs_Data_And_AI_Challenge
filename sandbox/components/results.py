@@ -35,12 +35,14 @@ def render_results_section(results):
             df[['rank', 'candidate_id', 'score', 'reasoning']],
             column_config={
                 "rank": st.column_config.NumberColumn("Rank", width="small"),
-                "candidate_id": st.column_config.NumberColumn("Candidate ID", width="small"),
+                # Changed from NumberColumn to TextColumn to fix the blue warning triangles [1.1.5, 1.2.9]
+                "candidate_id": st.column_config.TextColumn("Candidate ID", width="medium"),
                 "score": st.column_config.NumberColumn("Score", format="%.4f", width="medium"),
-                "reasoning": st.column_config.TextColumn("Reasoning", width="large")
+                "reasoning": st.column_config.TextColumn("Reasoning", width= 1800)
             },
             use_container_width=True,
-            height=400
+            # Increased height to allow comfortable vertical scrolling [1.1.9]
+            height=600  
         )
         
         # Download button

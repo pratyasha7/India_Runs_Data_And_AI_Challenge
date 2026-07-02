@@ -1,0 +1,44 @@
+# --- Python Virtual Environments ---
+.venv/
+venv/
+env/
+ENV/
+
+# --- Python Cache & Compiled Files ---
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.cache/
+
+# --- Streamlit Configurations & Secrets ---
+.streamlit/*
+!.streamlit/config.toml
+.streamlit/secrets.toml
+
+# --- Datasets & Databases (Critical: Prevents GitHub 100MB Block) ---
+candidates.jsonl
+datasets/
+*.jsonl
+*.gz
+
+# --- Submission Outputs ---
+submission.csv
+outputs/
+unified/outputs/
+*.log
+
+# --- Official Word Documentation ---
+*.docx
+
+# --- System & Editor Metadata ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Official Validator & Sample Templates ---
+validate_submission.py
+candidate_schema.json
+sample_submission.csv

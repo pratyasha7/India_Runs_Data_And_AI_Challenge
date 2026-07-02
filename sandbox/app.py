@@ -99,6 +99,22 @@ st.markdown("""
         background: #94a3b8;
         cursor: not-allowed;
     }
+
+    /* --- CUSTOM VISIBLE VERTICAL SCROLLBAR STYLING --- */
+    [data-testid="stDataFrame"] ::-webkit-scrollbar, 
+    [data-testid="stDataFrame"] * ::-webkit-scrollbar {
+        width: 10px !important;
+        height: 10px !important;
+    }
+    [data-testid="stDataFrame"] ::-webkit-scrollbar-thumb,
+    [data-testid="stDataFrame"] * ::-webkit-scrollbar-thumb {
+        background: #cccccc !important;
+        border-radius: 5px !important;
+    }
+    [data-testid="stDataFrame"] ::-webkit-scrollbar-thumb:hover,
+    [data-testid="stDataFrame"] * ::-webkit-scrollbar-thumb:hover {
+        background: #999999 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 

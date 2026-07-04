@@ -8,16 +8,12 @@ SERVICE_COMPANIES = {
 }
 #Preventing crashes if fields are missing or corrupted
 def _safe_str(val) -> str:
-    """Convert values to a trimmed string and handle None values gracefully."""
     if val is None:
         return ""
     return str(val).strip()
 
 def _safe_int(val, default=0) -> int:
-    """
-    Convert input to integer. 
-    Handles string-based values like '90 days' or 'immediate' safely using regex [30].
-    """
+
     if val is None:
         return default
     val_str = str(val).strip()
@@ -31,14 +27,13 @@ def _safe_int(val, default=0) -> int:
 
     if "immediate" in val_str.lower() or "join now" in val_str.lower():
         return 0
-        
+
     try:
         return int(float(val))
     except (ValueError, TypeError):
         return default
 
 def _safe_float(val, default=0.0) -> float:
-    """Convert input to float safely, falling back to 0.0 on type errors."""
     if val is None:
         return default
     try:
@@ -74,7 +69,6 @@ def run_honeypot_audit(candidate) -> bool:
         avg_exp_dur = sum(_safe_int(s.get("duration_months"), 0) for s in expert_skills) / len(expert_skills)
         if avg_exp_dur < 12.0: 
             return True
-
     # Check 3: Compare total duration of all jobs against their overall stated Years of Experience 
     total_worked_months = sum(_safe_int(job.get("duration_months"), 0) for job in history)
     if yoe_months > 0 and total_worked_months > (yoe_months * 1.85):
@@ -83,7 +77,7 @@ def run_honeypot_audit(candidate) -> bool:
     # Check 4: Compare stated experience years against their actual chronological career span 
     timeline_yoe = total_worked_months / 12.0
     evidence_yoe_sources = [timeline_yoe]
-    
+
     if history:
         try:
             years = []
@@ -134,10 +128,6 @@ def run_honeypot_audit(candidate) -> bool:
 # (Ensuring product/startup experience) 
 
 def check_service_company_disqualifier(candidate) -> bool:
-    """
-    Check if the candidate has only worked at IT outsourcing/consulting firms [3]. 
-    We keep them if they have at least one product company [3].
-    """
     history = candidate.get("career_history", []) or [] 
     if not history:
         return True
